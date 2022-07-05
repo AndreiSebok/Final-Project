@@ -1,24 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./App.css";
-const userChoicePhoto = [
-  <img src="./assets/rock.png"></img>,
-  <img src="./assets/paper.png"></img>,
-  <img src="./assets/scissors.png"></img>,
-];
+
+import rock from "./assets/rock.png";
+import paper from "./assets/paper.png";
+import scissors from "./assets/scissors.png";
+
+const myChoices = {
+  rock: rock,
+  paper: paper,
+  scissors: scissors,
+}
+
+const choices = ["rock", "paper", "scissors"];
+
 const App = () => {
   const [userChoice, setUserChoice] = useState(null);
+  const [userImage, setUserImage] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
-  const choices = ["rock", "paper", "scissors"];
+
   const handleClick = (value) => {
     setUserChoice(value);
     generateComputerChoice();
+    setUserImage(myChoices[value]);
   };
 
-  const generateComputerChoice = () => {
+  const generateComputerChoice = useCallback(() => {
     const randomChoice = choices[Math.floor(Math.random() * choices.length)];
     setComputerChoice(randomChoice);
-  };
+  }, [setComputerChoice])
 
   useEffect(() => {
     {
@@ -46,7 +56,9 @@ const App = () => {
 
     
       <div>
-        <h1>{userChoicePhoto}</h1>
+        <h1>
+          <img src={userImage}/>
+        </h1>
         <h1>{computerChoice}</h1>
         {choices.map((choice, index) => (
           <button key={index} onClick={() => handleClick(choice)} id="j">

@@ -1,0 +1,38 @@
+html, body {
+    background-color: aqua;
+}
+
+#j {
+height:100px;
+width: 130px;
+background-color: lightcoral;
+margin:4px, black;
+display:list-item;
+}
+
+#c {
+    font-size-adjust: 20px;
+    color: black;
+    text-align: center;
+}
+
+#D {
+top:50px;
+right:40px;
+}
+
+
+#P1 {
+    width: 100%;
+    height: 50%;
+    object-fit:contain;
+    background-size:contain;
+    background-repeat:no-repeat;
+    top:150px;
+    right:80px;
+}
+
+#R {
+    width: 130px;
+    height: 80px;
+}

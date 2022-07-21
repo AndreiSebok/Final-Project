@@ -16,6 +16,7 @@ const choices = ["rock", "paper", "scissors"];
 const App = () => {
   const [userChoice, setUserChoice] = useState(null);
   const [userImage, setUserImage] = useState(null);
+  const {computerImage, setComputerImage} = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
@@ -23,12 +24,14 @@ const App = () => {
     setUserChoice(value);
     generateComputerChoice();
     setUserImage(myChoices[value]);
+    setComputerImage(myChoices[value]);
   };
 
   const generateComputerChoice = useCallback(() => {
     const randomChoice = choices[Math.floor(Math.random() * choices.length)];
     setComputerChoice(randomChoice);
   }, [setComputerChoice])
+
 
   useEffect(() => {
     {
@@ -56,18 +59,20 @@ const App = () => {
 
     
       <div>
-        <h1>
+        <h1 id="cont">
           <img src={userImage}/>
         </h1>
-        <h1>{computerChoice}</h1>
-        {choices.map((choice, index) => (
+        <div id="CI">
+        <h1><img src={computerImage}/></h1>
+        </div>
+        <div id="container">
+          {choices.map((choice, index) => (
           <button key={index} onClick={() => handleClick(choice)} id="j">
-            <div id="c">
-              <h2>{choice}</h2>
-            </div>
+           <h2>{choice}</h2>
           </button>
-        ))}
-        <h1>{result}</h1>
+          ))}
+          </div>
+        <h1 id="res">{result}</h1>
       </div>
     )
   

@@ -16,7 +16,7 @@ const choices = ["rock", "paper", "scissors"];
 const App = () => {
   const [userChoice, setUserChoice] = useState(null);
   const [userImage, setUserImage] = useState(null);
-  const {computerImage, setComputerImage} = useState(null);
+  const [computerImage, setComputerImage] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 

@@ -1,34 +1,28 @@
 import { useEffect, useState, useCallback } from "react";
-import "./App.css";
+import "./App.css"; 
 
-import rock from "./assets/rock.png";
-import paper from "./assets/paper.png";
-import scissors from "./assets/scissors.png";
+const selections = ["✌", "✋", "✊"];
 
-const myChoices = {
-  rock: rock,
-  paper: paper,
-  scissors: scissors,
+const mySelections = {
+  'rock': "✊",
+  'paper': "✋",
+  'scissors': "✌",
 }
 
 const choices = ["rock", "paper", "scissors"];
 
 const App = () => {
   const [userChoice, setUserChoice] = useState(null);
-  const [userImage, setUserImage] = useState(null);
-  const [computerImage, setComputerImage] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
   const handleClick = (value) => {
-    setUserChoice(value);
+    setUserChoice(mySelections[value]);
     generateComputerChoice();
-    setUserImage(myChoices[value]);
-    setComputerImage(myChoices[value]);
   };
 
   const generateComputerChoice = useCallback(() => {
-    const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+    const randomChoice = selections[Math.floor(Math.random() * selections.length)];
     setComputerChoice(randomChoice);
   }, [setComputerChoice])
 
@@ -36,46 +30,53 @@ const App = () => {
   useEffect(() => {
     {
       switch (userChoice + computerChoice) {
-        case "scissorspaper":
-        case "rockscissors":
-        case "paperrock":
-          setResult(<u>You Win!</u>);
-          break;
-        case "paperscissors":
-        case "scissorsrock":
-        case "rockpaper":
-          setResult(<u>You Lose!</u>);
-          break;
-        case "rockrock":
-        case "paperpaper":
-        case "scissorsscissors":
-          setResult(<u>Draw!</u>);
-          break;
-      }
+        case 'scissorspaper':
+        case 'rockpaper':
+        case 'paperrock':
+          setResult = "You win!"
+         break
+        case 'paperscissors':
+        case 'scissorsrock':
+        case 'rockpaper':
+          setResult = "You lose!"
+         break
+         case 'rockrock':
+          case 'paperpaper':
+          case 'scissorsscissors':
+            setResult = "Draw!"
+           break
     }
-  }, [computerChoice, userChoice]);
+    }
+      }, [computerChoice, userChoice])
 
+      
   return (
 
-    
-      <div>
-        <h1 id="cont">
-          <img src={userImage}/>
-        </h1>
-        <div id="CI">
-        <h1><img src={computerImage}/></h1>
-        </div>
-        <div id="container">
-          {choices.map((choice, index) => (
-          <button key={index} onClick={() => handleClick(choice)} id="j">
-           <h2>{choice}</h2>
-          </button>
-          ))}
-          </div>
-        <h1 id="res">{result}</h1>
+    <div>
+    <div id="cont"> 
+    <h1 class="py">
+      Player 1:
+      <h1>{userChoice}</h1>
+    </h1>
+    <div>
+    <h1 class="py">
+      Player 2:
+      <h1>{computerChoice}</h1>
+      </h1>
+    </div>
+    </div>
+    <div id="container">
+      {choices.map((choice, index) => (
+      <button key={index} onClick={() => handleClick(choice)} id="j">
+       <h2>{choice}</h2>
+      </button>
+      ))}
       </div>
-    )
-  
-};
+      <h1>{result}</h1>
+  </div>
+)
+
+      }; 
 
 export default App;
+

@@ -16,31 +16,6 @@ display:list-item;
     text-align: center;
 }
 
-#D {
-top:50px;
-right:40px;
-}
-
-
-#P1 {
-    width: 100%;
-    height: 50%;
-    object-fit:contain;
-    background-size:contain;
-    background-repeat:no-repeat;
-    top:150px;
-    right:80px;
-}
-
-#R {
-    width: 130px;
-    height: 80px;
-}
-
-#res {
-    text-align:center;
-}
-
 #cont {
     display:flex;
     flex-direction:row;
@@ -53,3 +28,10 @@ right:40px;
     justify-content:center;
     vertical-align:center;
 }
+
+.py {
+    display:flex;
+    flex-direction:column;
+    margin:10px;
+}
+
